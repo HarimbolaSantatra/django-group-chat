@@ -1,0 +1,28 @@
+.header {
+	background-color: var(--less-black);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user-header {
+	display: flex;
+	gap: 12px;
+}
+
+.header-col-flex{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+#avatar {
+	width: 100px;
+	clip-path: circle(40%);
+}
+
+#username-header {
+	font-weight: bold;
+	font-size: 1.6em;
+	text-transform: capitalize;
+}
