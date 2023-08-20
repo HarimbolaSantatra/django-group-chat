@@ -11,7 +11,7 @@ def index(request):
 
 def room(request, room_name):
     context = {
-    'username': '_santatra',
-    "room_name": room_name
+        'username': '_santatra',
+        "room_name": room_name
     }
     return render(request, 'render/room.html', context)
