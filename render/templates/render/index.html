@@ -1,30 +1,33 @@
+{% extends 'render/main_app_base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>Hello Django on Render!</title>
+{% block title %} Room Choice {% endblock %}
 
-		<link rel="stylesheet"
-		      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-		      crossorigin="anonymous">
-	</head>
-	<body>
-		<header>
-			<a href="container mt-4 mb-4">
-				<img src="{% static "render/render.png" %}" alt="Render" class="mw-100">    
-			</a>
-		</header>
-		<main class="container">
-			<div class="row text-center justify-content-center">
-				<div class="col">
-					<h1 class="display-4">Hello World!</h1>
-				</div>
-			</div>
-		</main>
-	</body>
-</html>
+{% block content %}
+    <div class="row mb-2">
+        <div id="">
+            What chat room would you like to enter?
+        </div>
+        <select id="room-name-input" class="" >
+            {% for room in rooms %}
+                <option class="room-option" value={{room.name}} > {{ room.name }} </option>
+            {% endfor %}
+        </select>
+    </div>
+    <input id="room-name-submit" class="btn blue-btn" type="button" value="Enter">
+
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+    
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/room/' + roomName + '/';
+        };
+    </script>
+
+{% endblock %}

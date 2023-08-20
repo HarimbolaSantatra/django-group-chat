@@ -1,0 +1,53 @@
+{% extends 'render/main_app_base.html' %} 
+{% load static %} 
+{% block title %} {{room_name}} {% endblock %}
+
+{% block content %}
+<div id="message-header">
+
+</div>
+
+<!--  {{message_chat.time}} -->
+<button id='load-more-btn' class='btn cyan-btn'> Load More </button>
+<div id="message-block">
+  Welcome to {{room_name}}
+  <!-- {% for daily_message in chat_per_day %}
+    <div class="message-day">{{daily_message.day}}</div>
+    {% for hourly_message in daily_message.per_hour %}
+      <div> {{hourly_message.hour}}</div>
+      {% for message_chat in hourly_message.chats %}
+        <div class="message-row {{message_chat.class_name}}">
+          <div class="message-card">
+            <div class="message-name">
+              {{message_chat.username}}
+            </div>
+            <div class="message-box">
+              {{message_chat.message}}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  {% endfor %} -->
+</div>
+
+<div id="input-block" class="header">
+  <input id="chat-message-user" type="hidden" value="{{username}}" />
+  <input id="chat-message-room" type="hidden" value="{{room_name}}" />
+  <input id="chat-message-input" class="input text-input" type="text" placeholder="Type Your Message" />
+  <br />
+  <input
+    id="chat-message-submit"
+    type="button"
+    class="btn btn-primary"
+    value="Send"
+  />
+</div>
+
+<!-- {{ room_name|json_script:"room-name" }} -->
+
+<script src="{% static 'func.js' %}"></script>
+<script src="{% static 'room.js' %}"></script>
+<script src="{% static 'ajax-message.js' %}"></script>
+
+{% endblock %}
