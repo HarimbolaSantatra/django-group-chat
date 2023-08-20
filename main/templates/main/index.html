@@ -1,0 +1,33 @@
+{% extends 'main/main_app_base.html' %}
+{% load static %}
+
+{% block title %} Room Choice {% endblock %}
+
+{% block content %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <div class="row mb-2">
+            <div id="">
+                What chat room would you like to enter?
+            </div>
+            <select id="room-name-input" name="room_name" >
+                {% for room in rooms %}
+                    <option class="room-option" value={{room.name}} > {{ room.name }} </option>
+                {% endfor %}
+            </select>
+            <div> Enter your username </div>
+            <input type="text" name="username" placeholder="Username...">
+        </div>
+        <input id="room-name-submit" class="btn blue-btn" type="submit" value="Enter">
+    </form>
+
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+    </script>
+
+{% endblock %}

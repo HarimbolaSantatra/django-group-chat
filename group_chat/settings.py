@@ -19,7 +19,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-        "render.apps.RenderConfig",
+        "main.apps.RenderConfig",
         "django.contrib.admin",
         "django.contrib.auth",
         "django.contrib.contenttypes",
@@ -38,6 +38,12 @@ MIDDLEWARE = [
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
         ]
+
+
+# SESSION
+SESSION_ENGINE = "django.contrib.sessions.backends.file"
+SESSION_FILE_PATH = None  # None: default system tmp folder
+
 
 ROOT_URLCONF = "group_chat.urls"
 

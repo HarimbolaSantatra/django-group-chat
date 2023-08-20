@@ -15,6 +15,7 @@ def get_all():
 		all.append(element)
 	return all
 
+
 def get_room(room_name):
 	all = []
 	for element in data.values():
@@ -22,3 +23,10 @@ def get_room(room_name):
 			all.append(element)
 	return all
 
+
+def get_by_id(id):
+	r = {}
+	for k in data.keys():
+		if int(k) == id:
+			r = data[k]
+	return r

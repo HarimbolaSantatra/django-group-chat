@@ -1,4 +1,4 @@
-{% extends 'render/main_app_base.html' %} 
+{% extends 'main/main_app_base.html' %} 
 {% load static %} 
 {% block title %} {{room_name}} {% endblock %}
 
@@ -46,8 +46,8 @@
 
 <!-- {{ room_name|json_script:"room-name" }} -->
 
-<script src="{% static 'func.js' %}"></script>
-<script src="{% static 'room.js' %}"></script>
-<script src="{% static 'ajax-message.js' %}"></script>
+<script src="{% static 'main/func.js' %}"></script>
+<script src="{% static 'main/room.js' %}"></script>
+<script src="{% static 'main/ajax-message.js' %}"></script>
 
 {% endblock %}

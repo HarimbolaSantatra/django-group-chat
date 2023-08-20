@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>{% block title %} Base {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'render/header.css' %}">
-    <link rel="stylesheet" href="{% static 'render/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/header.css' %}">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
 </head>
 
 <body class='container'>
@@ -16,7 +16,7 @@
     {% block header %}
     <div class="header">
         <div id="user-header">
-            <img id="avatar" src="{% static 'render/man.png' %}" alt="avatar"/>
+            <img id="avatar" src="{% static 'main/man.png' %}" alt="avatar"/>
             <div class="header-col-flex">
                 <div id="username-header">{{username}}</div>
                 <a href="{% url 'logout' %}" class="">
