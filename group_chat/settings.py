@@ -108,17 +108,17 @@ STATIC_URL = "/static/"
 
 # ============== Uncomment/comment this section for production/development environments
 # LOCAL ENV
-DEBUG = True
+# DEBUG = True
 
 # PRODUCTION ENV
 # Following settings only make sense on production and may break development environments.
-# DEBUG = 'RENDER' not in os.environ
-# if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-#     # in your application directory on Render.
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     # Turn on WhiteNoise storage backend that takes care of compressing static files
-#     # and creating unique names for each version so they can safely be cached forever.
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEBUG = 'RENDER' not in os.environ
+if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Turn on WhiteNoise storage backend that takes care of compressing static files
+    # and creating unique names for each version so they can safely be cached forever.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ============== production/development environments =======================
 
