@@ -11,7 +11,6 @@
 <button id='load-more-btn' class='btn cyan-btn'> Load More </button>
 <div id="message-block">
   {% for chat in chats %}
-  {{chat.class}}
     <div class="message-row {{chat.class}}">
       <div class="message-card">
         <div class="message-name">{{chat.username}}</div>
