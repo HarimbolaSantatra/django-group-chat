@@ -93,10 +93,18 @@ def room(request, room_name):
         return redirect(f'/')
 
     current_room = Room(room_name)
+    chats = persistance.get_room(room_name)
+    # Set message class: the message owned by the connected user is in other color
+    for element in chats:
+        if element["username"] == request.session['username']:
+            element["class"] = "primary-message-row"
+        else:
+            element["class"] = "secondary-message-row"
+
     context = {
         "username": request.session['username'],
         "room_name": room_name,
-        "chats": persistance.get_room(room_name),
+        "chats": chats,
     }
     return render(request, 'main/room.html', context)
 
