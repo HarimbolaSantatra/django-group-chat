@@ -86,7 +86,7 @@ function addResponseToUI(my_complex_json_response){
 
 function handleSend(){
   const messageInputDom = document.querySelector("#chat-message-input");
-  const message = messageInputDom.value;\
+  const message = messageInputDom.value;
   addMessagesToUI([message]);
 
   // clear input value
