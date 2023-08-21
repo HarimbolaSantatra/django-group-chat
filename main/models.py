@@ -14,7 +14,13 @@ class Room():
 
 
 class Chat():
-    def __init__(self, id):
+    def __init__(self, room="", user="", message="", date=datetime.now()):
+        self.message = message
+        self.user = username
+        self.room = room
+        self.date = date
+
+    def construct_by_id(id):
         self.chat = persistance.get_by_id(id)
         self.message = chat.message
         self.user = chat.username
@@ -113,5 +119,29 @@ class Chat():
             else:
                 chat_per_day[-1]['per_hour'][-1]["chats"].append(new_chat)
 
-
         return chat_per_day
+
+
+    @staticmethod
+    def convertList(chats):
+        """
+        Convert an array of dictionnaries of chat object into an array of Chat object
+
+        Parameters:
+        -----------
+        chats: array
+
+        Return: array
+        ------------
+
+        """
+        result = []
+        for element in chats:
+            new_chat = Chat(
+                room=element["room"], 
+                user=element["user"], 
+                message=element["message"], 
+                date=element["date"]
+                )
+            result.append(new_chat)
+        return result

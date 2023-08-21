@@ -38,6 +38,18 @@ def index(request):
     
     return render(request, 'main/index.html', context)
 
+
+def logout(request):
+    rooms = [{'name':'lobby'}, {'name':'test'}]
+    context = {
+        'username': '',
+        'rooms': rooms,
+        'room_name': '',
+    }
+    request.session.clear()
+    return redirect(f'/')
+
+
 def load_messages(request, room_name):
     """
     Take a request and return a json response containing the next message.
@@ -57,6 +69,7 @@ def load_messages(request, room_name):
     # We extract the chat object in reverse order so notice how we index the result
     # due to UI implementation, we must reverse the order of the result
     chats = persistance.get_room(room_name)[ci:MESSAGE_PER_PAGE+ci]
+    chats = Chat.convertList(chats)
 
     # # update message index
     request.session['current_index'] = ci + MESSAGE_PER_PAGE
@@ -75,6 +88,10 @@ def load_messages(request, room_name):
 
 
 def room(request, room_name):
+    # if user is not connected
+    if 'username' not in request.session:
+        return redirect(f'/')
+
     current_room = Room(room_name)
     context = json.loads(load_messages(request, room_name).content)
     request.session['current_index'] = 0
