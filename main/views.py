@@ -93,6 +93,7 @@ def room(request, room_name):
         return redirect(f'/')
 
     current_room = Room(room_name)
-    context = json.loads(load_messages(request, room_name).content)
-    request.session['current_index'] = 0
+    context = {
+        "chats": persistance.get_room(room_name),
+    }
     return render(request, 'main/room.html', context)

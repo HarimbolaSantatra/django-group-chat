@@ -10,23 +10,13 @@
 <!--  {{message_chat.time}} -->
 <button id='load-more-btn' class='btn cyan-btn'> Load More </button>
 <div id="message-block">
-  {% for daily_message in chat_per_day %}
-    <div class="message-day">{{daily_message.day}}</div>
-    {% for hourly_message in daily_message.per_hour %}
-      <div> {{hourly_message.hour}}</div>
-      {% for message_chat in hourly_message.chats %}
-        <div class="message-row {{message_chat.class_name}}">
-          <div class="message-card">
-            <div class="message-name">
-              {{message_chat.username}}
-            </div>
-            <div class="message-box">
-              {{message_chat.message}}
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    {% endfor %}
+  {% for chat in chats %}
+    <div class="message-row secondary-message-row">
+      <div class="message-card">
+        <div class="message-name">{{chat.username}}</div>
+        <div class="message-box">{{chat.message}} </div>
+      </div>
+    </div>
   {% endfor %}
 </div>
 
