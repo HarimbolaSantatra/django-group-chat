@@ -94,6 +94,8 @@ def room(request, room_name):
 
     current_room = Room(room_name)
     context = {
+        "username": request.session['username'],
+        "room_name": room_name,
         "chats": persistance.get_room(room_name),
     }
     return render(request, 'main/room.html', context)
