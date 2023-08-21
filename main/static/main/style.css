@@ -99,14 +99,17 @@ h1, h2, h3 {
 
 
 #room-name-input {
-  margin: 15px 0;
-  padding: 15px;
   font-size: 1em;
   font-weight: bold;
   width: 50%;
   background-color: var(--less-black);
   color: inherit;
   border: none;
+}
+
+.clean-input{
+  margin: 15px 0;
+  padding: 15px;
 }
 
 .room-option {
