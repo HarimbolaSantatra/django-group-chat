@@ -27,7 +27,8 @@ function addMessagesToUI(messages){
 function addResponseToUI(my_complex_json_response){
   /* 
   my_complex_json_response: the complex json response that you can find in models.py commentary.
-  The variable names inside this function is the same as in room.html
+  The variable names inside this function is the same as in room.html.
+  !! NOT WORKING ANYMORE BECAUSE I EDIT THE UI OF ROOM.HTML !!
   */
   const chat_per_day = my_complex_json_response.chat_per_day;
 
@@ -69,27 +70,25 @@ function addResponseToUI(my_complex_json_response){
   }
 }
 
-function addMessageToDb(webSocket){
+// function addMessageToDb(room, username, message, date){
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', `http://${window.location.host}/write/`, true);
+//   xhr.setRequestHeader("Content-Type", "application/json");  
+//   xhr.send(`room=${room}&username=${username}&message=${message}&date=${date}`);
+//   xhr.onload = function(){
+//     if(xhr.status === 200) {
+//       // addResponseToUI(xhr.response);
+//       alert("Message saved !")
+//     }
+//   }
+// };
 
-  // webSocket is an instance of WebSocket class
-  
-  const userInputDom = document.querySelector("#chat-message-user");
-  const username = userInputDom.value;
-  const roomInputDom = document.querySelector("#chat-message-room");
-  const room_name = roomInputDom.value;
+
+function handleSend(){
   const messageInputDom = document.querySelector("#chat-message-input");
-  const message = messageInputDom.value;
-
+  const message = messageInputDom.value;\
   addMessagesToUI([message]);
-
-  webSocket.send(
-    JSON.stringify({
-      username: username,
-      room_name: room_name,
-      message: message,
-    })
-  );
 
   // clear input value
   messageInputDom.value = "";
-};
+}

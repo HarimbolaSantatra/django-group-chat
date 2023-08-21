@@ -7,7 +7,7 @@ from . import persistance
 from main.models import User, Room, Chat
 
 def index(request):
-    rooms = [{'name':'lobby'}, {'name':'test'}]
+    rooms = [{'name':'test'}, {'name':'lobby'}]
     context = {
         'username': '',
         'rooms': rooms,
@@ -99,3 +99,19 @@ def room(request, room_name):
         "chats": persistance.get_room(room_name),
     }
     return render(request, 'main/room.html', context)
+
+
+def write(request):
+    # Take a POST request to write to the data.json file
+    if request.method == "POST":
+        # if all the request data is present, do the operation
+        if 'room' in request.POST and 'username' in request.POST and 'message' in request.POST:
+            data = {
+                'room' : request.POST.get('room'),
+                'username' : request.POST.get('username'),
+                'message' : request.POST.get('message')
+            }
+            # Write to the JSON file
+            persistance.write(**data)
+            room_name = request.POST.get('room')
+    return redirect(f'/room/{room_name}')
