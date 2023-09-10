@@ -1,14 +1,62 @@
 {
-	"0": {
-		"room": "test",
-		"username": "santatra",
-		"message": "Hello, I'm Santatra. Welcome :)",
-		"date": "2023-08-20T10:28:02.211+03:00"
-	},
-	"1": {
-		"room": "formal",
-		"username": "santatra",
-		"message": "Please do not share your personnal informations ! Please be polite here :)",
-		"date": "2023-08-20T10:28:02.211+03:00"
-	}
+    "0": {
+        "room": "test",
+        "username": "santatra",
+        "message": "Hello, I'm Santatra. Welcome :)",
+        "date": "2023-08-20T10:28:02.211+03:00"
+    },
+    "1": {
+        "room": "formal",
+        "username": "santatra",
+        "message": "Please do not share your personnal informations ! Please be polite here :)",
+        "date": "2023-08-20T10:28:02.211+03:00"
+    },
+    "2": {
+        "room": "test",
+        "username": "kezia",
+        "message": "Hi",
+        "date": "2023-08-20T10:29:23.255+03:00"
+    },
+    "3": {
+        "room": "test",
+        "username": "user_2",
+        "message": "A test premier",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "4": {
+        "room": "test",
+        "username": "root",
+        "message": "I am root",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "5": {
+        "room": "lobby",
+        "username": "kezia",
+        "message": "Let's make another test and hope everything will be fine",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "6": {
+        "room": "lobby",
+        "username": "kezia",
+        "message": "Does it work ?",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "7": {
+        "room": "lobby",
+        "username": "santatra",
+        "message": "I think so !",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "8": {
+        "room": "lobby",
+        "username": "santatra",
+        "message": "Thank you Kezia :)",
+        "date": "2023-09-10 15:14:59.479121"
+    },
+    "9": {
+        "room": "test",
+        "username": "root",
+        "message": "And i am root!",
+        "date": "2023-09-10 15:14:59.479121"
+    }
 }

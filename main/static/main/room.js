@@ -6,8 +6,3 @@ document.querySelector("#chat-message-input").onkeyup = function (e) {
   }
 };
 
-// On submit
-document.querySelector("#chat-message-submit").onclick = function(e) { 
-  handleSend()
-}
-
