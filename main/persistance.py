@@ -5,14 +5,24 @@ from datetime import datetime
 parent_dir = os.path.join(os.path.dirname(__file__), os.pardir)
 dataPath = os.path.join(parent_dir, 'data.json')
 
+
 def open_data(mode='r'):
-	data = {}
-	with open(dataPath, mode) as file:
-		data = json.load(file)
-	return data
+    """ Read data file and return a python object
+        arguments:
+        mode -- read mode
+        return:
+        object
+    """
+    data = {}
+    with open(dataPath, mode) as file:
+        data = json.load(file)
+    return data
 
 
 def get_last_index():
+	""" 
+	Return the index after the last index 
+	"""
 	data = open_data()
 	i = 0
 	while True:
@@ -63,6 +73,8 @@ def write(room, username, message, date=datetime.now()):
 		"date": str(date),
 	}
 	with open(dataPath, "r+") as file:
+		# clear the whole file first
+		file.truncate(0)
+		# copy data inside the file
 		json.dump(data, file)
-
 	
