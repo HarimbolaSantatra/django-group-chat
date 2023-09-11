@@ -4,7 +4,7 @@
 {% block title %} Room Choice {% endblock %}
 
 {% block content %}
-    <form action="{% url 'index' %}" method="post">
+    <form action="{% url 'index' %}" method="post" autocomplete="off" >
         {% csrf_token %}
         <div class="row mb-2">
             <div id="">
@@ -16,9 +16,10 @@
                 {% endfor %}
             </select>
             <div> Enter your username </div>
-            <input type="text" class="input text-input clean-input" name="username" placeholder="Username...">
+            <input id="username-input" type="text" class="input text-input clean-input" name="username" placeholder="Username...">
+            <small class="warning"> Username required </small>
         </div>
-        <input id="room-name-submit" class="btn blue-btn" type="submit" value="Enter">
+        <input id="room-name-submit" class="btn blue-btn" type="submit" value="Enter" disabled >
     </form>
 
     <script>
@@ -28,6 +29,38 @@
                 document.querySelector('#room-name-submit').click();
             }
         };
+
+        const enterBtn = document.querySelector("#room-name-submit");
+        const usernameInput = document.querySelector("#username-input");
+        const parentDiv = usernameInput.parentNode;
+
+
+        // enable submit button and remove warning 
+        function removeWarning () {
+            const warningDiv = document.querySelector('small.warning');
+            enterBtn.removeAttribute('disabled');
+            parentDiv.removeChild(warningDiv);
+        }
+        
+        // disable submit button and remove warning
+        function addWarning () {
+            enterBtn.addAttribute('disabled');
+            const warningDiv = document.createElement('small');
+            warningDiv.className = 'warning';
+            parentDiv.appendChild(warningDiv);
+        }
+
+        // WARNING AFTER ENTER ROOM WITHOUT USERNAME
+        usernameInput.addEventListener('change', () => {
+            // if username is not empty, enable submit button and remove warning 
+            if ( usernameInput.value !== "" ) {
+                removeWarning();
+            }
+            else {
+                addWarning();
+            }
+        })
+
     </script>
 
 {% endblock %}

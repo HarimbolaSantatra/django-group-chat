@@ -69,6 +69,12 @@ h1, h2, h3 {
     border: solid 1px var(--white-text);
 }
 
+.warning {
+    display: block;
+    color: var(--red);
+    margin: 8px 0;
+}
+
 .btn {
   border-radius: 10px;
   font-size: inherit;
@@ -108,7 +114,7 @@ h1, h2, h3 {
 }
 
 .clean-input{
-  margin: 15px 0;
+  margin: 15px 0 5px 0;
   padding: 15px;
 }
 
