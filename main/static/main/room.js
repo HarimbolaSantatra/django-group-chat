@@ -78,7 +78,7 @@ const sendBtn = document.querySelector("#chat-message-submit");
 sendBtn.addEventListener('click', (event) => {
   console.log("Sending new message ....")
   event.preventDefault();
-  const addMessageEndpoint = `http://${window.location.host}/write/`;
+  const addMessageEndpoint = `//${window.location.host}/write/`;
   const roomName = document.querySelector("#chat-message-room").value;
   const uName = document.querySelector("#chat-message-user").value;
   const mess = document.querySelector("#chat-message-input").value;
