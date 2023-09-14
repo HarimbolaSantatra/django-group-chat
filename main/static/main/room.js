@@ -111,7 +111,7 @@ sendBtn.addEventListener('click', (event) => {
 const loadingBtn = document.querySelector('#load-more-btn');
 const roomName = document.querySelector("#chat-message-room").value;
 const username = document.querySelector("#chat-message-user").value;
-const loadMessageEndpoint =  `http://${window.location.host}/load/${roomName}/`;
+const loadMessageEndpoint =  `//${window.location.host}/load/${roomName}/`;
 loadingBtn.addEventListener('click', () => {
   fetch(loadMessageEndpoint)
     .then(resp => resp.json())
