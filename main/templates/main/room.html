@@ -10,33 +10,19 @@
 <!--  {{message_chat.time}} -->
 <button id='load-more-btn' class='btn cyan-btn'> Load More </button>
 <div id="message-block">
-  {% for chat in chats %}
-    <div class="message-row {{chat.class}}">
-      <div class="message-card">
-        <div class="message-name">{{chat.username}}</div>
-        <div class="message-box">{{chat.message}} </div>
-      </div>
-    </div>
-  {% endfor %}
 </div>
 
-<form id="input-block" class="header" method="POST" action="{% url 'write' %}">
-  {% csrf_token %}
+<form id="input-block" class="header" method='POST'>
+    {% csrf_token %}
   <input id="chat-message-user" name="username" type="hidden" value="{{username}}" />
   <input id="chat-message-room" name="room" type="hidden" value="{{room_name}}" />
   <input id="chat-message-input" name="message" 
-      class="input text-input" type="text" placeholder="Type Your Message" />
+      class="input text-input" type="text" placeholder="Type Your Message" autocomplete="off" />
   <br />
-  <input
-    id="chat-message-submit"
-    type="submit"
-    class="btn btn-primary"
-    value="Send"
-  />
+  <input type="submit" id="chat-message-submit" class="btn btn-primary" value="Send" />
 </form>
 
 <!-- {{ room_name|json_script:"room-name" }} -->
 
-<script src="{% static 'main/func.js' %}"></script>
 <script src="{% static 'main/room.js' %}"></script>
 {% endblock %}

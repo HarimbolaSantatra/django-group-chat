@@ -11,7 +11,7 @@ def open_data(mode='r'):
         arguments:
         mode -- read mode
         return:
-        object
+        object of format {"0": {...}, ...}
     """
     data = {}
     with open(dataPath, mode) as file:
@@ -33,22 +33,46 @@ def get_last_index():
 			break  # just to be safe that the loop will end
 	return i
 
-
-def get_all():
-	all = []
-	data = open_data()
-	for element in data.values():
-		all.append(element)
-	return all
-
+def get_length(room_name=""):
+    """ Return the length of the data. If no room name is specified, return the total number.
+    Parameter: room_name: str, optional
+    Return: length
+    """
+    if room_name == "" or room_name == None:
+        data = open_data()
+        return len(data.values())
+    else:
+        data = get_room(room_name)
+        return len(data)
 
 def get_room(room_name):
-	all = []
+	""" Return the messages in a given room name
+	Parameter:
+		room_name
+	Return:
+		data: list of object
+	"""
 	data = open_data()
-	for element in data.values():
-		if element['room'] == room_name:
-			all.append(element)
-	return all
+	result = [ e for e in data.values() if e["room"] == room_name]
+	return result
+
+
+def get_room_paginated(room_name, nb, index):
+    """ Get specific number of message in a room.
+    Parameter:
+        room_name
+        nb: number of message to extract
+        index: begin to get message at this specific index
+    Return:
+        data: list of object. Each object must contains the following keys: room, username, message, date
+    """
+    data = get_room(room_name)
+    offset = 0 if (nb + index) < 0 else nb + index
+    # if index < 0, just get the remaining item
+    index = 0 if index < 0 else index
+    # subset return a list of object
+    subset = data[ index : offset ]
+    return subset
 
 
 def get_by_id(id):

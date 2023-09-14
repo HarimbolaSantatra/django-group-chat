@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 
 import json
 
+from main.models import Room
 from . import persistance
-from main.models import User, Room, Chat
 
 def index(request):
     rooms = [{'name':'test'}, {'name':'lobby'}]
@@ -40,12 +40,6 @@ def index(request):
 
 
 def logout(request):
-    rooms = [{'name':'lobby'}, {'name':'test'}]
-    context = {
-        'username': '',
-        'rooms': rooms,
-        'room_name': '',
-    }
     request.session.clear()
     return redirect(f'/')
 
@@ -53,38 +47,32 @@ def logout(request):
 def load_messages(request, room_name):
     """
     Take a request and return a json response containing the next message.
+    Parameters:
+        request
+        room_name: str
+    Return:
+        json containing a list
     """
 
     MESSAGE_PER_PAGE = 4
 
-    try:
-        ci = request.session['current_index']
-    except KeyError:
-        request.session['current_index'] = 0
-        ci = 0
+    # check if a request have already been done. Update the index accordingly
+    if 'current_index' not in request.session or request.session['current_index'] == None:
+        l = persistance.get_length(room_name)  # length of the data
+        # initial-index = len(set) - len(subset)
+        request.session['current_index'] = l - MESSAGE_PER_PAGE
 
-    username = request.session['username']
+    # if current_index is negative, do not get more message anymore
+    ci = request.session['current_index'] 
 
-    # Query a number of chat message. Invert sort by date
-    # We extract the chat object in reverse order so notice how we index the result
-    # due to UI implementation, we must reverse the order of the result
-    chats = persistance.get_room(room_name)[ci:MESSAGE_PER_PAGE+ci]
-    chats = Chat.convertList(chats)
+    # check if user is not logged in or if username is empty
+    if 'username' not in request.session or request.session['username'] == "" :
+        return redirect('index')
 
-    # # update message index
-    request.session['current_index'] = ci + MESSAGE_PER_PAGE
+    response = persistance.get_room_paginated(room_name, MESSAGE_PER_PAGE, ci)
+    request.session['current_index'] = ci - MESSAGE_PER_PAGE 
 
-    response = {
-        'username': username,
-        'room_name': room_name,
-        'chat_per_day': Chat.sort_chats_per_day_per_hour(chats, username),
-        
-        # just for debugging and knowing the request status
-        'ci': ci,
-        'session_index': request.session['current_index'],
-    }
-
-    return JsonResponse(response)
+    return JsonResponse({"data" : response})
 
 
 def room(request, room_name):
@@ -93,24 +81,21 @@ def room(request, room_name):
         return redirect(f'/')
 
     current_room = Room(room_name)
-    chats = persistance.get_room(room_name)
-    # Set message class: the message owned by the connected user is in other color
-    for element in chats:
-        if element["username"] == request.session['username']:
-            element["class"] = "primary-message-row"
-        else:
-            element["class"] = "secondary-message-row"
+
+    # on first load or on reload, clear session[current_index]
+    if 'current_index' in request.session:
+        request.session['current_index'] = None
 
     context = {
         "username": request.session['username'],
         "room_name": room_name,
-        "chats": chats,
     }
     return render(request, 'main/room.html', context)
 
 
 def write(request):
     # Take a POST request to write to the data.json file
+    status = 0
     if request.method == "POST":
         # if all the request data is present, do the operation
         if 'room' in request.POST and 'username' in request.POST and 'message' in request.POST:
@@ -121,5 +106,9 @@ def write(request):
             }
             # Write to the JSON file
             persistance.write(**data)
-            room_name = request.POST.get('room')
-    return redirect(f'/room/{room_name}')
+            status = 200
+        else:
+            status = 400
+            raise Exception("Tsy afaka alefa ireo data fa misy banga ny payload !")
+    return JsonResponse({"status" : status})
+
