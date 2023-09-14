@@ -5,15 +5,18 @@
 	justify-content: space-between;
 }
 
-#user-header {
+.header-row-flex{
 	display: flex;
 	gap: 12px;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-col-flex{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+    align-items: center;
 }
 
 #avatar {
@@ -22,7 +25,7 @@
 }
 
 #username-header {
-	font-weight: bold;
-	font-size: 1.6em;
+	font-size: 1.4em;
 	text-transform: capitalize;
 }
+
