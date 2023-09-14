@@ -52,7 +52,7 @@ def load_messages(request, room_name):
         json containing a list
     """
 
-    MESSAGE_PER_PAGE = 4
+    MESSAGE_PER_PAGE = 5
 
     # check if a request have already been done. Update the index accordingly
     if 'current_index' not in request.session or request.session['current_index'] == None:
