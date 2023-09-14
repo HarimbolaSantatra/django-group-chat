@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // ==== GET CSRF TOKEN 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-console.log(`CSRF Token is ${csrftoken}`)
 
 // ==== ON SEND NEW MESSAGE
 const sendBtn = document.querySelector("#chat-message-submit");
