@@ -1,8 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-import json
-
 from main.models import Room
 from . import persistance
 
