@@ -258,6 +258,26 @@ h1, h2, h3 {
     color: var(--red);
 }
 
+#footer {
+  height: 20px;
+  background-color: var(--less-black);
+  width: 100vw;
+  text-align: end;
+  padding: 1%;
+  font-style: italic;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#footer a {
+  color: var(--cyan);
+}
+
+#footer a:hover {
+  color: var(--magenta);
+}
+
 
 @media screen and ( max-width: 512px ) {
     .header {
