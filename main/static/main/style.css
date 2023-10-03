@@ -222,6 +222,32 @@ h1, h2, h3 {
   margin-right: 10px;
 }
 
+#announcement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--less-black);
+  border-radius: 15px;
+}
+
+#announcement li {
+    margin: 8px 10px;
+}
+
+#annou-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.annou-warning {
+    color: var(--red);
+}
+
 
 @media screen and ( max-width: 512px ) {
     .header {
