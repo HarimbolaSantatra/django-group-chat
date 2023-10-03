@@ -69,11 +69,15 @@
 
         // disable submit button and add warning
         function addWarning () {
-            enterBtn.setAttribute('disabled', true);
-            const warningDiv = document.createElement('small');
-            warningDiv.className = 'warning';
-            warningDiv.textContent = 'Username required';
-            parentDiv.appendChild(warningDiv);
+	    // if warning div exist so don't add another warning anymore
+	    const wD = document.querySelector('small.warning');
+	    if ( !wD ) {
+		enterBtn.setAttribute('disabled', true);
+		const warningDiv = document.createElement('small');
+		warningDiv.className = 'warning';
+		warningDiv.textContent = 'Username required';
+		parentDiv.appendChild(warningDiv);
+	    }
         }
 
         // WARNING AFTER ENTER ROOM WITHOUT USERNAME
