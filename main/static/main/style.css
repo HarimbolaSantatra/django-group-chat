@@ -259,15 +259,16 @@ h1, h2, h3 {
 }
 
 #footer {
-  height: 20px;
+  height: 50px;
   background-color: var(--less-black);
-  width: 100vw;
+  box-sizing: border-box;
+  width: 99vw;
   text-align: end;
-  padding: 1%;
+  padding: 1% 2% 1% 1%;
   font-style: italic;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* right: 0; */
 }
 
 #footer a {
