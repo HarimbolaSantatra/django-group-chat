@@ -16,7 +16,7 @@
                 {% endfor %}
             </select>
             <div> Enter your username </div>
-            <input id="username-input" type="text" class="input text-input clean-input" name="username" placeholder="Username..." value="santatra">
+            <input id="username-input" type="text" class="input text-input clean-input" name="username" placeholder="Username..." >
             <small class="warning"> Username required </small>
         </div>
         <input id="room-name-submit" class="btn blue-btn" type="submit" value="Enter"  >
@@ -44,18 +44,23 @@
         const parentDiv = usernameInput.parentNode;
 
 
-        // enable submit button and remove warning 
-        function removeWarning () {
-            const warningDiv = document.querySelector('small.warning');
-            enterBtn.removeAttribute('disabled');
-            parentDiv.removeChild(warningDiv);
-        }
-        
-        // disable submit button and remove warning
+	// enable submit button and remove warning 
+	function removeWarning () {
+	    const warningDiv = document.querySelector('small.warning');
+	    // if the div exist, ...
+	    if ( warningDiv ) {
+		enterBtn.removeAttribute('disabled');
+		parentDiv.removeChild(warningDiv);
+	    }
+	    // else, do nothing
+	}
+
+        // disable submit button and add warning
         function addWarning () {
-            enterBtn.addAttribute('disabled');
+            enterBtn.setAttribute('disabled', true);
             const warningDiv = document.createElement('small');
             warningDiv.className = 'warning';
+            warningDiv.textContent = 'Username required';
             parentDiv.appendChild(warningDiv);
         }
 
