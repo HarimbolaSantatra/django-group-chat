@@ -232,6 +232,7 @@ h1, h2, h3 {
   padding: 20px;
   background-color: var(--less-black);
   border-radius: 15px;
+  box-sizing: border-box;
 }
 
 .announcement-card li {
@@ -270,4 +271,19 @@ h1, h2, h3 {
     .header-svg {
         width: 45px;
     }
+
+    .announcement-card {
+      padding: 5px;
+      width: 90vw;
+    }
+
+    .announcement-card > ul {
+      padding: 6px;
+    }
+
+    .announcement-card li {
+      width: 100%;
+      margin: 0 10px;
+    }
+
 }
