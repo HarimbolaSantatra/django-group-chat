@@ -65,7 +65,7 @@
         }
 
         // WARNING AFTER ENTER ROOM WITHOUT USERNAME
-        usernameInput.addEventListener('change', () => {
+        usernameInput.addEventListener('keyup', () => {
             // if username is not empty, enable submit button and remove warning 
             if ( usernameInput.value !== "" ) {
                 removeWarning();
