@@ -1,5 +1,6 @@
 // ====== ON DOCUMENT LOAD
-document.querySelector("#chat-message-input").focus();
+const messageInputDom = document.querySelector("#chat-message-input");
+messageInputDom.focus();
 
 
  /* Add a list of messages to the UI
@@ -80,7 +81,7 @@ sendBtn.addEventListener('click', (event) => {
   const addMessageEndpoint = `//${window.location.host}/write/`;
   const roomName = document.querySelector("#chat-message-room").value;
   const uName = document.querySelector("#chat-message-user").value;
-  const mess = document.querySelector("#chat-message-input").value;
+  const mess = messageInputDom.value;
   let formData = new FormData();
   formData.append('username', uName);
   formData.append('room', roomName);
@@ -102,7 +103,7 @@ sendBtn.addEventListener('click', (event) => {
       'data': Date.now()
     } ], uName);
     // clear input value
-    document.querySelector("#chat-message-input").value = '';
+    messageInputDom.value = '';
   })
 });
 
