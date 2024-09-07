@@ -19,7 +19,16 @@ and run:
     poetry install
     poetry run python3 manage.py runserver
 
+## Project description
+### Files
+- `build.sh`: build script used by Render to deploy
+
 ## Feedback and Issues
 Feel free to raise issues or to provide any feeback.
+Any contribution are welcome!
+
+Take a look at:
+- [Current issues](https://github.com/HarimbolaSantatra/django-group-chat/issues)
+- [TODO list](todo.md)
 
 [1]: https://group-chat-s9wl.onrender.com
