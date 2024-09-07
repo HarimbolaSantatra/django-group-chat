@@ -19,6 +19,11 @@ and run:
     poetry install
     poetry run python3 manage.py runserver
 
+## Local deployement
+To deploy locally for test:
+
+    daphne group_chat.asgi:application
+
 ## Project description
 ### Files
 - `build.sh`: build script used by Render to deploy
