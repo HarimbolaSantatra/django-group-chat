@@ -14,16 +14,21 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 
 from django.core.asgi import get_asgi_application
+from django.urls import path
+
+from . import consumers
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "group_chat.settings")
 
 application = get_asgi_application()
 
-from group_chat.routing import websocket_urlpatterns
-
 application = ProtocolTypeRouter({
     "http": application,
     "websocket": AllowedHostsOriginValidator(
-        AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
+        AuthMiddlewareStack(
+            URLRouter([
+                path(r"ws/chat/(?P<room_name>\w+)/$", consumers.ChatConsumer.as_asgi())
+                ])
+            )
         ),
     })
