@@ -1,14 +1,39 @@
 // ====== ON DOCUMENT LOAD
 const messageInputDom = document.querySelector("#chat-message-input");
+const loadingBtn = document.querySelector('#load-more-btn');
+const roomName = document.querySelector("#chat-message-room").value;
+const username = document.querySelector("#chat-message-user").value;
+const loadMessageEndpoint =  `//${window.location.host}/load/${roomName}/`;
+
 messageInputDom.focus();
 
+// create a new WebSocket
+const chatSocket = new WebSocket(
+  'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+  )
+
+// When receiving a new message
+chatSocket.onmessage = function(e) {
+  console.log(`New websocket message from server: ${e.data}`);
+  const data = JSON.parse(e.data);
+  let messageObject = {
+    'room': roomName,
+    'username': username,
+    'message': data.message
+  }
+  addMessagesToUI([messageObject], username);
+};
+
+chatSocket.onclose = function(e) {
+  console.error('Chat socket closed unexpectedly');
+};
 
  /* Add a list of messages to the UI
   * Parameters
     * messages: list of object. Each object should contains the following keys: room, username, message, date
     * username: current username. Used to change the color of each message
     * mode: str: 'first' or 'last' (default). Add to the head or to the tail of the block
-  * Remark: make sure to update this code if you update the html layout in the room
+  * Remark: make sure to update this code if you update the html layout in the room!
   */
 function addMessagesToUI(messages, username, mode='last'){
 
@@ -76,42 +101,25 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 // ==== ON SEND NEW MESSAGE
 const sendBtn = document.querySelector("#chat-message-submit");
 sendBtn.addEventListener('click', (event) => {
-  console.log("Sending new message ....")
+  console.log("Sending new message thought WebSocket....")
   event.preventDefault();
-  const addMessageEndpoint = `//${window.location.host}/write/`;
   const roomName = document.querySelector("#chat-message-room").value;
-  const uName = document.querySelector("#chat-message-user").value;
   const mess = messageInputDom.value;
-  let formData = new FormData();
-  formData.append('username', uName);
-  formData.append('room', roomName);
-  formData.append('message', mess);
-  const options = {
-    method: 'POST',
-    headers: {
-      'X-CSRFToken': csrftoken
-    },
-    mode: 'same-origin',
-    body: formData
-  }
-  fetch(addMessageEndpoint, options)
-  .then( () => {
-    addMessagesToUI([ {
-      "room": roomName, 
-      'username': uName, 
-      'message': mess,
-      'data': Date.now()
-    } ], uName);
-    // clear input value
-    messageInputDom.value = '';
-  })
+
+  // send JSON data with the following key: room, username, message, date
+  // this is required because that's the format conventionally accepted by the backend and the front-end.
+  // Codes from both needs this!
+  chatSocket.send(JSON.stringify({
+    'room': roomName,
+    'username': username,
+    'message': mess,
+    'date': new Date()
+  }));
+
+  messageInputDom.value = ''; // clear input value
 });
 
-// ====== LOAD MORE MESSAGE BTN
-const loadingBtn = document.querySelector('#load-more-btn');
-const roomName = document.querySelector("#chat-message-room").value;
-const username = document.querySelector("#chat-message-user").value;
-const loadMessageEndpoint =  `//${window.location.host}/load/${roomName}/`;
+// ====== Load more message btn
 loadingBtn.addEventListener('click', () => {
   fetch(loadMessageEndpoint)
     .then(resp => resp.json())

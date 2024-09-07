@@ -5,6 +5,7 @@ from main.models import Room
 from . import persistance
 
 def index(request):
+    """The login page"""
     rooms = [{'name':'test'}, {'name':'lobby'}]
     context = {
         'username': '',
@@ -74,6 +75,7 @@ def load_messages(request, room_name):
 
 
 def room(request, room_name):
+    """Room page where user talks to each other"""
     # if user is not connected
     if 'username' not in request.session:
         return redirect(f'/')

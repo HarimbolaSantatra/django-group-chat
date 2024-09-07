@@ -19,6 +19,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
+        "daphne",
         "main.apps.RenderConfig",
         "django.contrib.admin",
         "django.contrib.auth",
@@ -127,3 +128,6 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Daphne
+ASGI_APPLICATION = "group_chat.asgi.application"

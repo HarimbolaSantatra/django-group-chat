@@ -7,11 +7,13 @@ dataPath = os.path.join(parent_dir, 'data.json')
 
 
 def open_data(mode='r'):
-    """ Read data file and return a python object
-        arguments:
-        mode -- read mode
-        return:
-        object of format {"0": {...}, ...}
+    """Read data file and return a python object
+
+       Args:
+            mode -- read mode
+    
+       Returns:
+            object of format {"0": {...}, ...}
     """
     data = {}
     with open(dataPath, mode) as file:
@@ -20,9 +22,7 @@ def open_data(mode='r'):
 
 
 def get_last_index():
-	""" 
-	Return the index after the last index 
-	"""
+	"""Return the index after the last index"""
 	data = open_data()
 	i = 0
 	while True:
@@ -48,7 +48,7 @@ def get_length(room_name=""):
 def get_room(room_name):
 	""" Return the messages in a given room name
 	Parameter:
-		room_name
+		room_name (str)
 	Return:
 		data: list of object
 	"""
@@ -85,9 +85,7 @@ def get_by_id(id):
 
 
 def write(room, username, message, date=datetime.now()):
-	"""
-	Write to the data.json
-	"""
+	"""Write to the data.json. All parameters are string."""
 	data = open_data()
 	last_index = get_last_index()
 	data[last_index] = {
