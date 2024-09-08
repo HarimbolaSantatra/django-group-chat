@@ -8,8 +8,10 @@ const loadMessageEndpoint =  `//${window.location.host}/load/${roomName}/`;
 messageInputDom.focus();
 
 // create a new WebSocket
+const httpScheme = window.location.protocol;
+let wsUri = httpScheme == 'https:' ? 'wss://' : 'ws://';
 const chatSocket = new WebSocket(
-  'wss://' + window.location.host + '/ws/chat/' + roomName + '/'
+  wsUri + window.location.host + '/ws/chat/' + roomName + '/'
   )
 
 // When receiving a new message
