@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Daphne
 ASGI_APPLICATION = "group_chat.asgi.application"
+
+CSRF_TRUSTED_ORIGINS = ["https://group-chat-s9wl.onrender.com"]
