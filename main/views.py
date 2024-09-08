@@ -91,24 +91,3 @@ def room(request, room_name):
         "room_name": room_name,
     }
     return render(request, 'main/room.html', context)
-
-
-def write(request):
-    # Take a POST request to write to the data.json file
-    status = 0
-    if request.method == "POST":
-        # if all the request data is present, do the operation
-        if 'room' in request.POST and 'username' in request.POST and 'message' in request.POST:
-            data = {
-                'room' : request.POST.get('room'),
-                'username' : request.POST.get('username'),
-                'message' : request.POST.get('message')
-            }
-            # Write to the JSON file
-            persistance.write(**data)
-            status = 200
-        else:
-            status = 400
-            raise Exception("Tsy afaka alefa ireo data fa misy banga ny payload !")
-    return JsonResponse({"status" : status})
-
