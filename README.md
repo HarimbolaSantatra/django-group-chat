@@ -36,8 +36,6 @@ To deploy locally for test, run one of these commands (the first format is *reco
 Feel free to raise issues or to provide any feeback.
 Any contribution are welcome!
 
-Take a look at:
-- [Current issues](https://github.com/HarimbolaSantatra/django-group-chat/issues)
-- [TODO list](todo.md)
+Take a look at the [current issues](https://github.com/HarimbolaSantatra/django-group-chat/issues).
 
 [1]: https://group-chat-s9wl.onrender.com

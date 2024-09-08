@@ -14,7 +14,7 @@ const chatSocket = new WebSocket(
 
 // When receiving a new message
 chatSocket.onmessage = function(e) {
-  console.log(`New websocket message from server: ${e.data}`);
+  console.log(`New websocket message from server`);
   const data = JSON.parse(e.data);
   let messageObject = {
     'room': roomName,
@@ -25,7 +25,7 @@ chatSocket.onmessage = function(e) {
 };
 
 chatSocket.onclose = function(e) {
-  console.error('Chat socket closed unexpectedly');
+  console.log('Chat socket closed!');
 };
 
  /* Add a list of messages to the UI
