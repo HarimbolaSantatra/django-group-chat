@@ -9,7 +9,7 @@ messageInputDom.focus();
 
 // create a new WebSocket
 const chatSocket = new WebSocket(
-  'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+  'wss://' + window.location.host + '/ws/chat/' + roomName + '/'
   )
 
 // When receiving a new message
