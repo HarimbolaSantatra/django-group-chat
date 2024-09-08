@@ -17,16 +17,20 @@ Deployed on Render: [Website][1]
 and run:
 
     poetry install
-    poetry run python3 manage.py runserver
 
-## Local deployement
-To deploy locally for test:
+To deploy locally for test, run one of these commands (the first format is *recommended* because it's the one the project is using on production:
 
     daphne group_chat.asgi:application
+    poetry run python3 manage.py runserver
 
 ## Project description
 ### Files
 - `build.sh`: build script used by Render to deploy
+- `data.json`: the flat file database
+
+### Branch
+- *legacy-no-ws*: using simple JS script + file writing to update the UI and the database, without using websocket
+- *master*: production
 
 ## Feedback and Issues
 Feel free to raise issues or to provide any feeback.
