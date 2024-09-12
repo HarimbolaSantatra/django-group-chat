@@ -1,8 +1,9 @@
 # Chat Application
 
-This is a group chat application made with Django.
+This is a group chat application made with Django, deployed [on Render][1].
 
-Deployed on Render: [Website][1]
+### Screenshot:
+![screenshot](screenshot.png)
 
 ## Local development
 [Install poetry](https://python-poetry.org/docs/) (this example use a virtual environment:
