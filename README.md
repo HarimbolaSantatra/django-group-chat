@@ -4,6 +4,8 @@ This is a group chat application made with Django.
 
 Deployed on Render: [Website][1]
 
+![screenshot](screenshot.png)
+
 ## Local development
 [Install poetry](https://python-poetry.org/docs/) (this example use a virtual environment:
 
