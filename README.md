@@ -8,7 +8,7 @@ This is a group chat application made with Django, deployed [on Render][1].
 ## Local development
 [Install poetry](https://python-poetry.org/docs/) (this example use a virtual environment:
 
-    VENV_PATH=/home/$USER/.python-venv/poetry
+    VENV_PATH=/home/$USER/.python-venv/django-group-chat
     mkdir -p $VENV_PATH
     python3 -m venv $VENV_PATH
     $VENV_PATH/bin/pip install -U pip setuptools
@@ -19,10 +19,13 @@ and run:
 
     poetry install
 
-To deploy locally for test, run one of these commands (the first format is *recommended* because it's the one the project is using on production:
+To deploy locally for test, run one of these commands (the first format is *recommended* because it's the one the project is using on production):
 
-    daphne group_chat.asgi:application
-    poetry run python3 manage.py runserver
+```bash
+daphne group_chat.asgi:application
+# or
+poetry run python3 manage.py runserver
+```
 
 ## Project description
 ### Files
