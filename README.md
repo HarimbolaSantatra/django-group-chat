@@ -2,6 +2,8 @@
 
 This is a group chat application made with Django, deployed [on Render][1].
 
+It can also be used as a paste bin on local network.
+
 ### Screenshot:
 ![screenshot](screenshot.png)
 
@@ -22,7 +24,7 @@ and run:
 To deploy locally for test, run one of these commands (the first format is *recommended* because it's the one the project is using on production):
 
 ```bash
-daphne group_chat.asgi:application
+daphne [-b 0.0.0.0 -p 8000] group_chat.asgi:application
 # or
 poetry run python3 manage.py runserver
 ```
@@ -35,6 +37,7 @@ poetry run python3 manage.py runserver
 ### Branch
 - *legacy-no-ws*: using simple JS script + file writing to update the UI and the database, without using websocket
 - *master*: production
+- *render-prod*: contains the code deployed on Render
 
 ## Feedback and Issues
 Feel free to raise issues or to provide any feeback.
